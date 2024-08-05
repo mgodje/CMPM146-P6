@@ -1,4 +1,5 @@
 from keras.utils import image_dataset_from_directory
+
 from config import train_directory, test_directory, image_size, batch_size, validation_split
 
 def _split_data(train_directory, test_directory, batch_size, validation_split):
