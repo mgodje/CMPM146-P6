@@ -107,8 +107,30 @@ class UserWebcamPlayer:
         # The classification value should be 0, 1, or 2 for neutral, happy or surprise respectively
 
         # return an integer (0, 1 or 2), otherwise the code will throw an error
-        return 1
-        pass
+
+        # Load the pre-trained model
+        model = models.load_model('results/70_percent_accuracy.keras')
+
+        # Resize the image to the size expected by the model
+        rgb = cv2.cvtColor(img, cv2.COLOR_GRAY2RGB)
+        rgb = cv2.resize(rgb, (150, 150))
+        rgb = np.expand_dims(rgb, axis=0)
+
+        # Predict the emotion
+        predictions = model.predict(rgb)
+        print(predictions)
+
+        if predictions[0][0] > predictions[0][1] and predictions[0][0] > predictions[0][2]:
+            emotion = 0  # neutral
+        elif predictions[0][1] > predictions[0][0] and predictions[0][1] > predictions[0][2]:
+            emotion = 1  # happy
+        else:
+            emotion = 2  # surprise
+
+        print("Selected emotion:", emotion)
+
+        # Return an integer (0, 1, or 2) neutral, happy, surprice
+        return emotion
     
     def get_move(self, board_state):
         row, col = None, None
