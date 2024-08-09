@@ -7,7 +7,6 @@ class BasicModel(Model):
     def _define_model(self, input_shape, categories_count):
         # Your code goes here
         
-
         self.model = Sequential([
             Input(shape=input_shape),
             Rescaling(1./255),

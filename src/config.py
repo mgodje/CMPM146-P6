@@ -1,7 +1,10 @@
 categories = ['neutral', 'happy', 'surprise']
+categories1 = ['dogs', 'cats']
 
 train_directory = 'train'
 test_directory = 'test'
+train_trans_directory = 'kaggle/train/dogs'
+test_trans_directory = 'kaggle/test1/test1'
 
 train_size = 5000
 original_image_size = (48, 48)
